@@ -41,7 +41,7 @@
  - ```addFunding(uint addedFunds, uint[] calldata distributionHint)```提供流动性，第二个参数为初始化流动性所设定的初始价格
  - ```removeFunding(uint sharesToBurn)```移除流动性
  - ```buy(uint investmentAmount, uint outcomeIndex, uint minOutcomeTokensToBuy)```通过FPMM购买条件代币
- - ```sell(uint returnAmount, uint outcomeIndex, uint maxOutcomeTokensToSell)```通过FPMM出售条件代币
+ - ```sell(uint returnAmount, uint outcomeIndex, uint maxOutcomeTokensToSell)```通过FPMM出售条件代币  
  可调用函数（未测试）：
  - view函数
  - 部分所有人有关函数，比如所有人转移
