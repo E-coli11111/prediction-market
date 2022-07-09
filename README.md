@@ -29,7 +29,7 @@
     ```condtionalTokens```已部署的conditionalTokens地址  
     ```collateralToken```AMM所使用的ERC20代币  
     ```conditionIds```AMM涉及的条件ID  
-    ```fee```流动性提供者可以获得的交易费用（PS. 10^18代表100%的费用） 
+    ```fee```流动性提供者可以获得的交易费用（PS. 10^18代表100%的费用）  
     ```managerFee```协议收取的费用  
     ```closeTime```停止交易的时间戳  
  
