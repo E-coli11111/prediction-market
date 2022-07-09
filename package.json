@@ -1,0 +1,19 @@
+{
+  "name": "prediction-market",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@gnosis.pm/conditional-tokens-contracts": "1.0.3",
+    "@gnosis.pm/conditional-tokens-market-makers": "1.8.1",
+    "@gnosis.pm/util-contracts": "3.0.0-alpha.3",
+    "@optionality.io/clone-factory": "^0.2.1",
+    "truffle": "^5.5.20"
+  }
+}

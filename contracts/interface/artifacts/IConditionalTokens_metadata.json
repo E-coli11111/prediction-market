@@ -1,0 +1,607 @@
+{
+	"compiler": {
+		"version": "0.8.15+commit.e14f2714"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "conditionId",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "oracle",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "questionId",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "outcomeSlotCount",
+						"type": "uint256"
+					}
+				],
+				"name": "ConditionPreparation",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "conditionId",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "oracle",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "questionId",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "outcomeSlotCount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256[]",
+						"name": "payoutNumerators",
+						"type": "uint256[]"
+					}
+				],
+				"name": "ConditionResolution",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "redeemer",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "contract IERC20",
+						"name": "collateralToken",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "parentCollectionId",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "conditionId",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256[]",
+						"name": "indexSets",
+						"type": "uint256[]"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "payout",
+						"type": "uint256"
+					}
+				],
+				"name": "PayoutRedemption",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "stakeholder",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "contract IERC20",
+						"name": "collateralToken",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "parentCollectionId",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "conditionId",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256[]",
+						"name": "partition",
+						"type": "uint256[]"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "PositionSplit",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "stakeholder",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "contract IERC20",
+						"name": "collateralToken",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "parentCollectionId",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "conditionId",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256[]",
+						"name": "partition",
+						"type": "uint256[]"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "PositionsMerge",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "parentCollectionId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "conditionId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "indexSet",
+						"type": "uint256"
+					}
+				],
+				"name": "getCollectionId",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "oracle",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "questionId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "outcomeSlotCount",
+						"type": "uint256"
+					}
+				],
+				"name": "getConditionId",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "conditionId",
+						"type": "bytes32"
+					}
+				],
+				"name": "getOutcomeSlotCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IERC20",
+						"name": "collateralToken",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "collectionId",
+						"type": "bytes32"
+					}
+				],
+				"name": "getPositionId",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IERC20",
+						"name": "collateralToken",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "parentCollectionId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "conditionId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "partition",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "mergePositions",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"name": "payoutDenominator",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"name": "payoutNumerators",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "oracle",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "questionId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "outcomeSlotCount",
+						"type": "uint256"
+					}
+				],
+				"name": "prepareCondition",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IERC20",
+						"name": "collateralToken",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "parentCollectionId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "conditionId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "indexSets",
+						"type": "uint256[]"
+					}
+				],
+				"name": "redeemPositions",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "questionId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "payouts",
+						"type": "uint256[]"
+					}
+				],
+				"name": "reportPayouts",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IERC20",
+						"name": "collateralToken",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "parentCollectionId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "conditionId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "partition",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "splitPosition",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"events": {
+				"ConditionPreparation(bytes32,address,bytes32,uint256)": {
+					"details": "Emitted upon the successful preparation of a condition.",
+					"params": {
+						"conditionId": "The condition's ID. This ID may be derived from the other three parameters via ``keccak256(abi.encodePacked(oracle, questionId, outcomeSlotCount))``.",
+						"oracle": "The account assigned to report the result for the prepared condition.",
+						"outcomeSlotCount": "The number of outcome slots which should be used for this condition. Must not exceed 256.",
+						"questionId": "An identifier for the question to be answered by the oracle."
+					}
+				},
+				"PositionSplit(address,address,bytes32,bytes32,uint256[],uint256)": {
+					"details": "Emitted when a position is successfully split."
+				},
+				"PositionsMerge(address,address,bytes32,bytes32,uint256[],uint256)": {
+					"details": "Emitted when positions are successfully merged."
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"getCollectionId(bytes32,bytes32,uint256)": {
+					"details": "Constructs an outcome collection ID from a parent collection and an outcome collection.",
+					"params": {
+						"conditionId": "Condition ID of the outcome collection to combine with the parent outcome collection.",
+						"indexSet": "Index set of the outcome collection to combine with the parent outcome collection.",
+						"parentCollectionId": "Collection ID of the parent outcome collection, or bytes32(0) if there's no parent."
+					}
+				},
+				"getConditionId(address,bytes32,uint256)": {
+					"details": "Constructs a condition ID from an oracle, a question ID, and the outcome slot count for the question.",
+					"params": {
+						"oracle": "The account assigned to report the result for the prepared condition.",
+						"outcomeSlotCount": "The number of outcome slots which should be used for this condition. Must not exceed 256.",
+						"questionId": "An identifier for the question to be answered by the oracle."
+					}
+				},
+				"getOutcomeSlotCount(bytes32)": {
+					"details": "Gets the outcome slot count of a condition.",
+					"params": {
+						"conditionId": "ID of the condition."
+					},
+					"returns": {
+						"_0": "Number of outcome slots associated with a condition, or zero if condition has not been prepared yet."
+					}
+				},
+				"getPositionId(address,bytes32)": {
+					"details": "Constructs a position ID from a collateral token and an outcome collection. These IDs are used as the ERC-1155 ID for this contract.",
+					"params": {
+						"collateralToken": "Collateral token which backs the position.",
+						"collectionId": "ID of the outcome collection associated with this position."
+					}
+				},
+				"prepareCondition(address,bytes32,uint256)": {
+					"details": "This function prepares a condition by initializing a payout vector associated with the condition.",
+					"params": {
+						"oracle": "The account assigned to report the result for the prepared condition.",
+						"outcomeSlotCount": "The number of outcome slots which should be used for this condition. Must not exceed 256.",
+						"questionId": "An identifier for the question to be answered by the oracle."
+					}
+				},
+				"reportPayouts(bytes32,uint256[])": {
+					"details": "Called by the oracle for reporting results of conditions. Will set the payout vector for the condition with the ID ``keccak256(abi.encodePacked(oracle, questionId, outcomeSlotCount))``, where oracle is the message sender, questionId is one of the parameters of this function, and outcomeSlotCount is the length of the payouts parameter, which contains the payoutNumerators for each outcome slot of the condition.",
+					"params": {
+						"payouts": "The oracle's answer",
+						"questionId": "The question ID the oracle is answering for"
+					}
+				},
+				"splitPosition(address,bytes32,bytes32,uint256[],uint256)": {
+					"details": "This function splits a position. If splitting from the collateral, this contract will attempt to transfer `amount` collateral from the message sender to itself. Otherwise, this contract will burn `amount` stake held by the message sender in the position being split worth of EIP 1155 tokens. Regardless, if successful, `amount` stake will be minted in the split target positions. If any of the transfers, mints, or burns fail, the transaction will revert. The transaction will also revert if the given partition is trivial, invalid, or refers to more slots than the condition is prepared with.",
+					"params": {
+						"amount": "The amount of collateral or stake to split.",
+						"collateralToken": "The address of the positions' backing collateral token.",
+						"conditionId": "The ID of the condition to split on.",
+						"parentCollectionId": "The ID of the outcome collections common to the position being split and the split target positions. May be null, in which only the collateral is shared.",
+						"partition": "An array of disjoint index sets representing a nontrivial partition of the outcome slots of the given condition. E.g. A|B and C but not A|B and B|C (is not disjoint). Each element's a number which, together with the condition, represents the outcome collection. E.g. 0b110 is A|B, 0b010 is B, etc."
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"payoutDenominator(bytes32)": {
+					"notice": "Denominator is also used for checking if the condition has been resolved. If the denominator is non-zero, then the condition has been resolved."
+				},
+				"payoutNumerators(bytes32)": {
+					"notice": "Mapping key is an condition ID. Value represents numerators of the payout vector associated with the condition. This array is initialized with a length equal to the outcome slot count. E.g. Condition with 3 outcomes [A, B, C] and two of those correct [0.5, 0.5, 0]. In Ethereum there are no decimal values, so here, 0.5 is represented by fractions like 1/2 == 0.5. That's why we need numerator and denominator values. Payout numerators are also used as a check of initialization. If the numerators array is empty (has length zero), the condition was not created/prepared. See getOutcomeSlotCount."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/interface/IConditionalTokens.sol": "IConditionalTokens"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0x9750c6b834f7b43000631af5cc30001c5f547b3ceb3635488f140f60e897ea6b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5a7d5b1ef5d8d5889ad2ed89d8619c09383b80b72ab226e0fe7bde1636481e34",
+				"dweb:/ipfs/QmebXWgtEfumQGBdVeM6c71McLixYXQP5Bk6kKXuoY4Bmr"
+			]
+		},
+		"contracts/interface/IConditionalTokens.sol": {
+			"keccak256": "0x13bd436ffd29934b7de49a66d99a12517c4f0059303a98d448442a64ad8e5504",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4ebfa529d1b765722f710f798b498502b85e31006a35a9920a96763410227358",
+				"dweb:/ipfs/QmUCrNtw8WcDkvTMR3Ji87UEAP76TRtGPqnbLMepygtKuf"
+			]
+		}
+	},
+	"version": 1
+}

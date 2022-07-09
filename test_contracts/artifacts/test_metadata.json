@@ -1,0 +1,66 @@
+{
+	"compiler": {
+		"version": "0.5.17+commit.d19bba13"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "sth",
+						"type": "uint256"
+					}
+				],
+				"name": "something",
+				"type": "event"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "x",
+						"type": "uint256"
+					}
+				],
+				"name": "foo",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"test_contracts/test.sol": "test"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"test_contracts/test.sol": {
+			"keccak256": "0xba25f6704da02377397b7d65e5edbfdb67a8ac10437a4ff10e08a2b0d6cb363c",
+			"urls": [
+				"bzz-raw://41c8649066401da0f06a30e2fd5c50b972b07349119dae16fa5388d483a3ff29",
+				"dweb:/ipfs/Qmc4C26AeHsMeLC4p3YQDAUcPvisgqxEF2kt8WxHwfq3x5"
+			]
+		}
+	},
+	"version": 1
+}
