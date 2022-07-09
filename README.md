@@ -22,7 +22,7 @@
 测试用ERC20代币
 
 ### FPMMFactory.sol
-用于创建FPMM合约
+用于创建FPMM合约  
 可调用函数（已测试）：
  - ```cloneConstructor(bytes calldata consData)```克隆合约时的构造函数
  - ```createFixedProductMarketMaker(ConditionalTokens conditionalTokens, IERC20 collateralToken, bytes32[] calldata conditionIds, uint fee, uint managerFee, uint closeTime)```创建FPMM合约
@@ -42,6 +42,7 @@
  - ```removeFunding(uint sharesToBurn)```移除流动性
  - ```buy(uint investmentAmount, uint outcomeIndex, uint minOutcomeTokensToBuy)```通过FPMM购买条件代币
  - ```sell(uint returnAmount, uint outcomeIndex, uint maxOutcomeTokensToSell)```通过FPMM出售条件代币  
+
  可调用函数（未测试）：
  - view函数
  - 部分所有人有关函数，比如所有人转移
