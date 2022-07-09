@@ -34,7 +34,7 @@
     ```closeTime```停止交易的时间戳  
  
 ### FPMM.sol
-使用的自动做市商机制
+使用的自动做市商机制  
 可调用函数（已测试）： 
  - ```withdrawFees(address account)```将部分交易费转给指定流动性提供者
  - ```withdrawMangerFee()```向合约所有人转入收取的协议费用，只能所有人调用
