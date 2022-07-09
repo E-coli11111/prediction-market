@@ -1,2 +1,6 @@
 .deps/
 node_modules/
+test/
+contracts/artifacts/
+contracts/interface/artifacts/
+contracts/interface/IFixedProductMarketMaker.sol

@@ -123,12 +123,12 @@ contract FPMM is ERC20, ERC1155TokenReceiver {
         emit OwnershipTransferred(oldOwner, newOwner);
     }
 
-    function setCloseTime(uint _closeTime) external {
+    function setCloseTime(uint _closeTime) external { //仅用于克隆FPMM时调用
         require (closeTime == 0, "Close Time already set");
         closeTime = _closeTime;
     }
 
-    function setOwner(address owner) external {
+    function setOwner(address owner) external { //仅用于克隆FPMM时调用
         require(_owner == address(0), "Owner already set");
         _transferOwnership(owner);
     }
