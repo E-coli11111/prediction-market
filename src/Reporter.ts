@@ -33,7 +33,6 @@ export class Reporter {
 
 
     public async initializeQuestion(
-            questionID: string,
             title: string,
             description: string,
             outcomes: string[],
@@ -46,7 +45,7 @@ export class Reporter {
         }
         // Dynamically generate ancillary data with binary resolution data appended
         const ancillaryData = this.createAncillaryData(title, description, outcomes, series, solveTime);
-
+        const questionID = ethers.utils.formatBytes32String(`q: title: ${title}, description: ${description}, res_data: ${outcomes[0]} = 0, ${outcomes[1]} = 1, unknown = 1000, series = ${series}`);
         let txn: TransactionResponse;
         if (overrides != undefined) {
             txn = await this.contract.initializeQuestion(
@@ -107,8 +106,8 @@ export class Reporter {
      * @param outcomes
      * @returns
      */
-    private createAncillaryData = (title: string, description: string, outcomes: string[], series: string, solveTime: number): Uint8Array => {
-        return ethers.utils.toUtf8Bytes(`q: title: ${title}, description: ${description}, res_data: ${outcomes[0]} = 0, ${outcomes[1]} = 1, unknown = 1000`);
+    public createAncillaryData = (title: string, description: string, outcomes: string[], series: string, solveTime: number): Uint8Array => {
+        return ethers.utils.toUtf8Bytes(`q: title: ${title}, description: ${description}, res_data: ${outcomes[0]} = 0, ${outcomes[1]} = 1, unknown = 1000, series = ${series}`);
     }
 
     private async getData(args){
