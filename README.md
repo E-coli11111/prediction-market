@@ -1,5 +1,9 @@
 # prediction-market
 
+Reporter: Rinkeby `0x49fCBe66031171D8Ee2d656E39A4E1d146AE3D24`  
+Factory: Rinkeby `0x0A5DAd97E0686A6d3568B2c447A0D022a80b6836`  
+测试token: Rinkeby `0xBe24cc33467c56E1870f7B1023E547bb3FD211F3`
+
 ## 用法
  - 运行```yarn install```配置环境
  - 运行```npm install @remix-project/remixd```安装remixd
