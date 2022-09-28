@@ -1,7 +1,7 @@
 # prediction-market
 
 Reporter: Rinkeby `0x4Cdd44bE93dbE27526F48d6621687CDBF6f5Fe50`  
-Factory: Rinkeby `0xee48406643Bf31555aE423689B9208dEf185bcDf`  
+Factory: Rinkeby `0x9c46bf14ef974EA58559FCF59B6aE19c1de44Ae5`  
 测试token: Rinkeby `0xBe24cc33467c56E1870f7B1023E547bb3FD211F3`
 
 ## 用法
