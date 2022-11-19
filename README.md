@@ -1,9 +1,10 @@
 # prediction-market
 
-ConditionalTokens: Mumbai `0x49fCBe66031171D8Ee2d656E39A4E1d146AE3D24`
+ConditionalTokens: Mumbai `0x49fCBe66031171D8Ee2d656E39A4E1d146AE3D24`  
 Reporter: Mumbai `0x31e25073D4376e2eAEe343c8A0A756573Fa38cfc`  
 Factory: Mumbai `0x0A5DAd97E0686A6d3568B2c447A0D022a80b6836`  
-测试token: Mumbai `0x61b84D1DcD51C3661061d621Ee53F3Bd8fE710Ae`
+测试token: Mumbai `0x61b84D1DcD51C3661061d621Ee53F3Bd8fE710Ae`  
+Proxy: Mumbai `0xf6BC7c6013d680e22ed835A76F6313D24F6efd75`  
 
 ## 用法
  - 运行```yarn install```配置环境
