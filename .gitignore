@@ -5,5 +5,7 @@ contracts/artifacts/
 contracts/interface/artifacts/
 contracts/interface/IFixedProductMarketMaker.sol
 src/tools
+src/*.js
 src/python
+src/initialize*
 .vscode
