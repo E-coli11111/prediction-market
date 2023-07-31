@@ -50,8 +50,3 @@
  - ```buy(uint investmentAmount, uint outcomeIndex, uint minOutcomeTokensToBuy)```通过FPMM购买条件代币
  - ```sell(uint returnAmount, uint outcomeIndex, uint maxOutcomeTokensToSell)```通过FPMM出售条件代币  
 
- 可调用函数（未测试）：
- - view函数
- - 部分所有人有关函数，比如所有人转移
- - ERC20相关函数如转账和授权
- - ```onERC1165Recieved()```一般只能在conditionalToken转账时使用
