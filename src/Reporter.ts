@@ -39,26 +39,26 @@ export class Reporter {
             series: string,
             solveTime: number,
             overrides?: ethers.Overrides,
-        ): Promise<TransactionReceipt> {
+        ): Promise<string> {
         if (outcomes.length != 2) {
             throw new Error("Invalid outcome length! Must be 2!");
         }
         // Dynamically generate ancillary data with binary resolution data appended
         const ancillaryData = this.createAncillaryData(title, description, outcomes, series, solveTime);
-        const questionID = ethers.utils.formatBytes32String(`q: title: ${title}, description: ${description}, res_data: ${outcomes[0]} = 0, ${outcomes[1]} = 1, unknown = 1000, series = ${series}`);
+        const questionID = ethers.utils.id(`q: title: ${title}, description: ${description}, res_data: ${outcomes[0]} = 0, ${outcomes[1]} = 1, unknown = 1000, source = ${series}`);
         let txn: TransactionResponse;
         if (overrides != undefined) {
             txn = await this.contract.initializeQuestion(
                 questionID,
                 ancillaryData,
-                solveTime - 3600,
+                solveTime,
                 overrides,
             );
         } else {
             txn = await this.contract.initializeQuestion(
                 questionID,
                 ancillaryData,
-                solveTime - 3600,
+                solveTime,
             );
         }
 
@@ -66,15 +66,15 @@ export class Reporter {
         console.log(`Transaction hash: ${txn.hash}`);
         const receipt: TransactionReceipt = await txn.wait();
         console.log(`Question initialized!`);
-        return receipt;
+        return questionID;
     }
 
     public async prepareCondition(questionID: string, overrides?: ethers.Overrides): Promise<TransactionReceipt>{
         let txn: TransactionResponse;
         if(overrides == undefined)
-            txn = await this.contract.prepareCondition(questionID, 2);
+            txn = await this.contract.prepareQuestion(questionID, 2);
         else
-            txn = await this.contract.prepareCondition(questionID, 2, overrides);
+            txn = await this.contract.prepareQuestion(questionID, 2, overrides);
 
         console.log(`Preparing question: ${questionID}...`);
         console.log(`Transaction hash: ${txn.hash}`);
@@ -83,12 +83,51 @@ export class Reporter {
         return receipt;
     }
 
+    public async initializeAndPrepare(
+        title: string,
+        description: string,
+        outcomes: string[],
+        series: string,
+        solveTime: number,
+        overrides?: ethers.Overrides): Promise<string>{
+            if (outcomes.length != 2) {
+                throw new Error("Invalid outcome length! Must be 2!");
+            }
+            // Dynamically generate ancillary data with binary resolution data appended
+            const ancillaryData = this.createAncillaryData(title, description, outcomes, series, solveTime);
+            const questionID = ethers.utils.id(`q: title: ${title}, description: ${description}, res_data: ${outcomes[0]} = 0, ${outcomes[1]} = 1, unknown = 1000, series = ${series}`);
+            let txn: TransactionResponse;
+            if (overrides != undefined) {
+                txn = await this.contract.initializeAndPrepare(
+                    questionID,
+                    ancillaryData,
+                    solveTime - 3600,
+                    2,
+                    overrides,
+                );
+            } else {
+                txn = await this.contract.initializeAndPrepare(
+                    questionID,
+                    ancillaryData,
+                    solveTime - 3600,
+                    2
+                );
+            }
+    
+            console.log(`Initializing questionID: ${questionID}...`);
+            console.log(`Transaction hash: ${txn.hash}`);
+            console.log(txn.nonce);
+            const receipt: TransactionReceipt = await txn.wait();
+            console.log(`Question initialized!`);
+            return questionID;
+        }
+
     public async settle(questionID: string, price: number, overrides?: ethers.Overrides): Promise<TransactionReceipt>{
         let txn: TransactionResponse;
         if(overrides == undefined)
-            txn = await this.contract.settleQuestion(questionID);
+            txn = await this.contract.settleQuestion(questionID, price);
         else
-            txn = await this.contract.settleQuestion(questionID, overrides);
+            txn = await this.contract.settleQuestion(questionID, price, overrides);
 
         console.log(`Settling question: ${questionID}...`);
         console.log(`Transaction hash: ${txn.hash}`);

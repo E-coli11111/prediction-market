@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.10;
 
-import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import { IERC20 } from "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v4.9/contracts/token//ERC20/IERC20.sol";
 
 interface IConditionalTokens {
     /// @dev Emitted upon the successful preparation of a condition.
@@ -52,10 +52,10 @@ interface IConditionalTokens {
     );
 
     /// Mapping key is an condition ID. Value represents numerators of the payout vector associated with the condition. This array is initialized with a length equal to the outcome slot count. E.g. Condition with 3 outcomes [A, B, C] and two of those correct [0.5, 0.5, 0]. In Ethereum there are no decimal values, so here, 0.5 is represented by fractions like 1/2 == 0.5. That's why we need numerator and denominator values. Payout numerators are also used as a check of initialization. If the numerators array is empty (has length zero), the condition was not created/prepared. See getOutcomeSlotCount.
-    function payoutNumerators(bytes32) external returns (uint256[] memory);
+    function payoutNumerators(bytes32, uint) external returns (uint);
 
     /// Denominator is also used for checking if the condition has been resolved. If the denominator is non-zero, then the condition has been resolved.
-    function payoutDenominator(bytes32) external returns (uint256);
+    function payoutDenominator(bytes32) external returns (uint);
 
     /// @dev This function prepares a condition by initializing a payout vector associated with the condition.
     /// @param oracle The account assigned to report the result for the prepared condition.
@@ -130,4 +130,14 @@ interface IConditionalTokens {
     /// @param collateralToken Collateral token which backs the position.
     /// @param collectionId ID of the outcome collection associated with this position.
     function getPositionId(IERC20 collateralToken, bytes32 collectionId) external pure returns (uint256);
+     function safeTransferFrom(
+        address from,
+        address to,
+        uint256 id,
+        uint256 value,
+        bytes calldata data
+    ) external ;
+    
+
+    function setApprovalForAll(address operator, bool approved) external;
 }

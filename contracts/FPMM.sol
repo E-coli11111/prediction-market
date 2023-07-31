@@ -58,7 +58,7 @@ contract FPMM is ERC20, ERC1155TokenReceiver {
 
     uint[] outcomeSlotCounts;
     bytes32[][] collectionIds;
-    uint[] positionIds;
+    uint[] internal positionIds; // [x, y]
     mapping (address => uint256) withdrawnFees;
     uint internal totalWithdrawnFees;
 
@@ -69,6 +69,12 @@ contract FPMM is ERC20, ERC1155TokenReceiver {
     uint public managerfeePoolWeight;
 
     address private _owner;
+
+    uint internal totalBuy = 0;
+    uint internal totalSell = 0;
+
+    mapping(bytes32 => uint) results; // 0 means not being registered.
+
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
     /**
@@ -77,6 +83,12 @@ contract FPMM is ERC20, ERC1155TokenReceiver {
     modifier onlyOwner() {
         _checkOwner();
         _;
+    }
+    // Set index to 0 to remove register
+    function registerResult(string memory title, uint index) public onlyOwner{
+        require(index < positionIds.length + 1, "Index out of bound");
+        require(results[keccak256(abi.encode(title))] == 0, "Result already registered");
+        results[keccak256(abi.encode(title))] = index;  
     }
 
     /**
@@ -141,12 +153,16 @@ contract FPMM is ERC20, ERC1155TokenReceiver {
         managerFee = _managerFee;
     }
 
-    function getPoolBalances() private view returns (uint[] memory) {
+    function getPoolBalances() public view returns (uint[] memory) {
         address[] memory thises = new address[](positionIds.length);
         for(uint i = 0; i < positionIds.length; i++) {
             thises[i] = address(this);
         }
         return conditionalTokens.balanceOfBatch(thises, positionIds);
+    }
+    
+    function getPoolBalanceByResult(string memory title) public view returns (uint){
+        return conditionalTokens.balanceOf(address(this), positionIds[results[keccak256(abi.encode(title))] - 1]);
     }
 
     function generateBasicPartition(uint outcomeSlotCount)
@@ -410,6 +426,8 @@ contract FPMM is ERC20, ERC1155TokenReceiver {
 
         conditionalTokens.safeTransferFrom(address(this), msg.sender, positionIds[outcomeIndex], outcomeTokensToBuy, "");
 
+        totalBuy += investmentAmount;
+
         emit FPMMBuy(msg.sender, investmentAmount, feeAmount, outcomeIndex, outcomeTokensToBuy);
     }
 
@@ -433,7 +451,33 @@ contract FPMM is ERC20, ERC1155TokenReceiver {
 
         require(collateralToken.transfer(msg.sender, returnAmount), "return transfer failed");
 
+        totalSell += returnAmount;
+
         emit FPMMSell(msg.sender, returnAmount, feeAmount, outcomeIndex, outcomeTokensToSell);
+    }
+
+    function getTotalBuy() external view returns (uint){
+        return totalBuy;
+    }
+
+    function getTotalSell() external view returns (uint){
+        return totalSell;
+    }
+
+    function getLiquidity() external view returns (uint){
+        return totalSupply();
+    }
+
+    function getPositionId(uint index) external view returns(uint){
+        return positionIds[index];
+    }
+
+    function getConditionalTokens() external view returns(address){
+        return address(conditionalTokens);
+    }
+
+    function getCollateral() external view returns(address){
+        return address(collateralToken);
     }
 }
 
