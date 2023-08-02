@@ -17,6 +17,7 @@
     "@gnosis.pm/conditional-tokens-market-makers": "1.8.1",
     "@gnosis.pm/util-contracts": "3.0.0-alpha.3",
     "@graphprotocol/graph-ts": "^0.27.0",
+    "@openzeppelin/contracts": "^4.9.3",
     "@optionality.io/clone-factory": "^0.2.1",
     "big.js": "^6.2.1",
     "ethers": "^5.7.0",

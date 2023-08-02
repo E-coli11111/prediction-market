@@ -130,7 +130,8 @@ interface IConditionalTokens {
     /// @param collateralToken Collateral token which backs the position.
     /// @param collectionId ID of the outcome collection associated with this position.
     function getPositionId(IERC20 collateralToken, bytes32 collectionId) external pure returns (uint256);
-     function safeTransferFrom(
+    
+    function safeTransferFrom(
         address from,
         address to,
         uint256 id,
